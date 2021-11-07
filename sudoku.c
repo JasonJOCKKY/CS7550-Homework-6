@@ -272,24 +272,25 @@ int main(){
     board_cases.push_back(board_case_2);
     board_cases.push_back(board_case_3);
     
-    SudokuSolver *solver = new SudokuSolver();
+    
 
     for (int i=0; i<board_cases.size(); i++) {
         
+        SudokuSolver solver = SudokuSolver();
 
         auto start_time = high_resolution_clock::now();
         vector<vector<char> > board = board_cases[i];
-        bool res = solver->solve_sudoku(board);
+        bool res = solver.solve_sudoku(board);
         auto end_time = high_resolution_clock::now();
         duration<double, std::milli> ms_double = end_time - start_time;
 
         cout<<"============================================================"<<endl;
         cout<<"CASE #"<<i+1<<endl;
         cout<<"============================================================"<<endl;
-        solver->print_record_results();
+        solver.print_record_results();
 
         cout<<"Final solution:"<<endl;
-        solver->print_board(board);
+        solver.print_board(board);
 
         cout<<"CPU execution time in seconds: " << ms_double.count()/1000.0 << "s"<<endl;
         cout<<endl;
